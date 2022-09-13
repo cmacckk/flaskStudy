@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>用户信息</h1>
+    <span>当前用户人数是: {{ users | length }}人</span>
+    <table border="1" cellspacing="0" width="60%">
+        {% for user in users %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.phone }}</td>
+            <td><a href="#">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="delete_user('{{user.username}}')">删除</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block myjs %}
+    <script>
+        function delete_user(username) {
+            location.href = '/delete_user?username=' + username
+        }
+    </script>
+{% endblock %}
