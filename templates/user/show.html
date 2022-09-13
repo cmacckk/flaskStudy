@@ -9,7 +9,7 @@
             <td>{{ user.username }}</td>
             <td>{{ user.password }}</td>
             <td>{{ user.phone }}</td>
-            <td><a href="#">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="delete_user('{{user.username}}')">删除</a></td>
+            <td><a href="javascript:;" onclick="update_user('{{ user.username }}')">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="delete_user('{{user.username}}')">删除</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -19,6 +19,10 @@
     <script>
         function delete_user(username) {
             location.href = '/delete_user?username=' + username
+        }
+
+        function update_user(username) {
+            location.href = '/update?username=' + username
         }
     </script>
 {% endblock %}

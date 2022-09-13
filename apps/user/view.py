@@ -44,6 +44,24 @@ def delete_user():
             return redirect('/')
     else:
         return '删除失败'
+    
+@user_blueprint.route('/update', methods=['GET', 'POST'], endpoint="update")
+def update_user():
+    if request.method == 'POST':
+        realname = request.form.get('realname')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        phone = request.form.get('phone')
+        for user in users:
+            if user.username == realname:
+                user.username = username
+                user.phone = phone
+                return '更改成功'
+    else:
+        username = request.args.get('username')
+        for user in users:
+            if user.username == username:
+                return render_template('user/update.html', user=user)
 
 @user_blueprint.route('/logout', methods=['GET', 'POST'])
 def logout():
